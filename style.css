@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
+
+body {
+  background: #0e2b3c;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  right: 50px;
+}
+input {
+  border: none;
+  width: 170px;
+  height: 25px;
+  outline: none;
+  padding-left: 10px;
+  border-radius: 3px;
+}
+.tooltip {
+  position: relative;
+  background: #ff3466;
+  padding: 5px 12px;
+  margin: 5px;
+  font-size: 15px;
+  border-radius: 100%;
+  color: #fff;
+  cursor: pointer;
+}
+.tooltip::before,
+.tooltip::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: #ff3466;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--translate-y,0)) scale(var(--scale));
+  transition: .4s transform;
+  transform-origin: bottom center;
+  text-shadow: 4px 4px 5px #000;
+}
+.tooltip::before {
+  --translate-y: calc(-100% - var(--arrow-size));
+  content: attr(data-tooltip);
+  padding: .4rem;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  background: var(--tooltip-color);
+  box-shadow: 1px 1px 2px #888888;
+}
+.tooltip:hover::before,
+.tooltip:hover::after {
+  --scale: 1;
+}
+.tooltip::after {
+  --translate-y: calc(-1 * var(--arrow-size));
+  content: '';
+  border: var(--arrow-size) solid transparent;
+  border-top-color: var(--tooltip-color);
+  transform-origin: top center;
+} 
+#anim:hover {
+  animation: shake 500ms ease-in-out forwards;
+}
+@keyframes shake {
+  0% {
+    transform: rotate(2deg);
+  }
+  50% {
+    transform: rotate(-3deg);
+  }
+  70% {
+    transform: rotate(3deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
